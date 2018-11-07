@@ -218,7 +218,7 @@ Values ('" & vsfUserDetails.GetData(vName, 1) & "','" & vsfUserDetails.GetData(v
                 sqlConn.Open()
 
                 Dim query1 As String
-                query1 = "Select * from City where StateId = '" & vsfUserDetails.GetData(vState, 1) & "'"
+                query1 = "Select * from City where StateId = '" & vsfUserDetails.GetData(vState, 1) & "' And CityName = '" & vsfUserDetails.GetData(vCity, 1) & "'"
                 cmd = New SqlCommand(query1, sqlConn)
                 reader = cmd.ExecuteReader
                 'adapter.SelectCommand = cmd
@@ -229,6 +229,7 @@ Values ('" & vsfUserDetails.GetData(vName, 1) & "','" & vsfUserDetails.GetData(v
                     Dim query2 As String
                     query2 = "Insert Into City(StateId,CityName) Values ('" & vsfUserDetails.GetData(vState, 1) & "','" & vsfUserDetails.GetData(vCity, 1) & "') "
                     cmd = New SqlCommand(query2, sqlConn)
+                    reader.Close()
                     reader = cmd.ExecuteReader
                 End If
                 sqlConn.Close()
